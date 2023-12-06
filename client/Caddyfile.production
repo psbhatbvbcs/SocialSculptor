@@ -1,0 +1,27 @@
+socialInsights.saarathi.me:443 {
+    tls psbhat007@gmail.com
+    redir https://www.socialInsights.saarathi.me{uri}
+}
+
+www.socialInsights.saarathi.me:443 {
+    tls psbhat007@gmail.com
+    root * /srv
+    route {
+        try_files {path} {path}/ /index.html
+        file_server
+    }
+}
+
+apiSocialInsights.saarathi.me:443 {
+    tls psbhat007@gmail.com
+    route {
+        reverse_proxy /* api-server:8082
+    }
+}
+
+apiPythonSocialInsights.saarathi.me:443 {
+    tls psbhat007@gmail.com
+    route {
+        reverse_proxy /* api-server:5003
+    }
+}
